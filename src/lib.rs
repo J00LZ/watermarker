@@ -15,15 +15,14 @@ pub struct Watermarker {
 impl Watermarker {
     pub fn new(cc: &CreationContext) -> Box<dyn App> {
         egui_extras::install_image_loaders(&cc.egui_ctx);
-        cc.egui_ctx
-            .send_viewport_cmd(ViewportCommand::Maximized(true));
+        // cc.egui_ctx
+        //     .send_viewport_cmd(ViewportCommand::Maximized(true));
         Box::new(Self::default())
     }
 }
 
 impl App for Watermarker {
-    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
-        // egui_extras::install_image_loaders(ctx);
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         self.file_recievers.receive_all();
         egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
             ui.horizontal(|ui| {
